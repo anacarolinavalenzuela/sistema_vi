@@ -2,7 +2,7 @@ from openai import OpenAI
 import tiktoken
 from prompts import PROMPTS_PADRONIZADOS
 
-client = OpenAI()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def contar_tokens(texto, modelo="gpt-3.5-turbo"):
     """Conta a quantidade de tokens de um texto dado um modelo."""
