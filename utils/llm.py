@@ -3,8 +3,6 @@ import tiktoken
 from prompts import PROMPTS_PADRONIZADOS
 from utils.classificar import criar_cliente_openai
 
-client = criar_cliente_openai()
-
 def contar_tokens(texto, modelo="gpt-3.5-turbo"):
     """Conta a quantidade de tokens de um texto dado um modelo."""
     enc = tiktoken.encoding_for_model(modelo)
@@ -42,6 +40,7 @@ Você é um assistente técnico especializado em análise detalhada de documento
 Texto:
 \"\"\"\n{parte}\n\"\"\"
 """
+        client = criar_cliente_openai()
         resposta = client.chat.completions.create(
             model=modelo,
             messages=[{"role": "user", "content": prompt_resumo_parcial}],
@@ -70,7 +69,7 @@ Resumos parciais:
 
 Gere um resumo final detalhado e estruturado, com ao menos 20 linhas.
 """
-
+    client = criar_cliente_openai()
     resposta_final = client.chat.completions.create(
         model=modelo,
         messages=[{"role": "user", "content": prompt_final}],
