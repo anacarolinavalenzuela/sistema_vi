@@ -2,10 +2,13 @@ from openai import OpenAI
 import streamlit as st
 import unicodedata
 import re
+import os
+from openai import OpenAI
 
 def criar_cliente_openai():
-    import streamlit as st  # importa aqui, dentro da função
     api_key = os.getenv("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
+    if not api_key:
+        raise ValueError("OPENAI_API_KEY não está configurada no ambiente")
     return OpenAI(api_key=api_key)
 
 def normalizar_texto(texto: str) -> str:
