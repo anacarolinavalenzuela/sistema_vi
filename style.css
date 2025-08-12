@@ -34,14 +34,16 @@ h1, .titulo {
     border-radius: 12px !important;
     padding: 10px 20px !important;
     font-size: 1.1rem !important;
-    transition: background-color 0.3s ease !important;
     cursor: pointer !important;
     box-shadow: 0 2px 4px rgba(0, 174, 239, 0.4) !important;
     font-family: 'Montserrat', sans-serif !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 }
 
-/* Remove background branco interno no texto do botão */
-.stButton > button > span {
+/* Remove fundo branco de todos os elementos filhos dentro do botão */
+.stButton > button * {
     background-color: transparent !important;
 }
 
@@ -50,7 +52,6 @@ h1, .titulo {
     background-color: #6CACDA !important;
     box-shadow: 0 4px 8px rgba(0, 119, 182, 0.6) !important;
 }
-
 
 
 /* Links */
