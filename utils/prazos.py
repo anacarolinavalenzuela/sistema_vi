@@ -140,6 +140,8 @@ def mostrar_prazos():
     arquivos = st.session_state["uploaded_files"]
     classificacoes = {}
 
+    client = criar_cliente_openai()
+
     for file in arquivos:
         tipo = normalizar_tipo_documento(classificar_documento(file["name"], client=client), file["name"])
 
