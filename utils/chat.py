@@ -141,7 +141,7 @@ def mostrar_chat():
     # CHAT COM UM DOCUMENTO ESPECÍFICO
     # -------------------------------
 
-    st.markdown("<div style='margin-top: 50px;'></div>")
+    st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
     st.markdown("### 📄 Pergunte algo sobre um documento específico:")
     doc_escolhido = st.selectbox("", nomes, key="doc_escolhido")
 
