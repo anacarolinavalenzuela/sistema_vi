@@ -2,8 +2,6 @@ import streamlit as st
 import base64
 from utils.classificar import criar_cliente_openai
 
-client = criar_cliente_openai()
-
 # ----- CONTROLE DE PÁGINAS -----
 
 def mudar_pagina(pagina):
