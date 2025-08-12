@@ -28,31 +28,31 @@ h1, .titulo {
 
 /* Botões padrão do Streamlit */
 .stButton > button {
-    background-color: #363b53 !important;
-    color: white !important;
-    border: none !important;
-    border-radius: 12px !important;
-    padding: 10px 20px !important;
-    font-size: 1.1rem !important;
-    cursor: pointer !important;
-    box-shadow: 0 2px 4px rgba(0, 174, 239, 0.4) !important;
+    background-color: #363b53;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 174, 239, 0.4);
     font-family: 'Montserrat', sans-serif !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
 }
 
-/* Remove fundo branco de todos os elementos filhos dentro do botão */
-.stButton > button * {
-    background-color: transparent !important;
-}
-
-/* Hover */
 .stButton > button:hover {
-    background-color: #6CACDA !important;
-    box-shadow: 0 4px 8px rgba(0, 119, 182, 0.6) !important;
+    background-color: #6CACDA;
+    box-shadow: 0 4px 8px rgba(0, 119, 182, 0.6);
 }
 
+.stButton > button > * {
+    background-color: transparent !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    display: inline !important;
+}
 
 /* Links */
 a {
