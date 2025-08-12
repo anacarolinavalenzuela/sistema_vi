@@ -116,10 +116,14 @@ def mostrar_resumo():
     st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
 
     classificacoes = {}
+    
+    client = criar_cliente_openai()
+
     for file in files:
         texto = extrair_texto(BytesIO(file["content"]), file["name"])
-        tipo = normalizar_tipo_documento(classificar_com_cache(file["name"], texto, client=client), file["name"])
-
+        tipo = normalizar_tipo_documento(
+            classificar_com_cache(file["name"], texto, client=client),
+            file["name"])
         if tipo not in classificacoes:
             classificacoes[tipo] = []
         classificacoes[tipo].append(file)
