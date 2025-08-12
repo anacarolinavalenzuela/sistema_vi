@@ -5,6 +5,8 @@ from utils.extrair_texto import extrair_texto
 from utils.llm import gerar_resumo_padronizado
 from utils.html_fix import force_all_to_ol 
 from utils.classificar import criar_cliente_openai
+import os
+from openai import OpenAI
 
 @st.cache_data(show_spinner="Gerando resumo...")
 def gerar_resumo_com_cache(nome_arquivo, texto, tipo):
@@ -79,9 +81,15 @@ def mostrar_resumo_tipo():
 
 
 @st.cache_data(show_spinner="Classificando os documentos...")
-def classificar_com_cache(nome_arquivo: str, conteudo_texto: str = None, client=None) -> str:
-    if client is None:
-        raise ValueError("Client OpenAI deve ser passado para classificar_com_cache")
+def classificar_com_cache(nome_arquivo: str, conteudo_texto: str = None) -> str:
+    # Cria o client dentro da função, sem passar como parâmetro
+    api_key = os.getenv("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
+    client = OpenAI(api_key=api_key)
+    
+    # código da classificação que usa o client
+    # ... sua lógica que antes estava em classificar_documento
+
+    # Você pode, por exemplo, chamar sua função original passando o client interno
     return classificar_documento(nome_arquivo, conteudo_texto, client=client)
 
 
