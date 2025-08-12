@@ -3,7 +3,8 @@ import streamlit as st
 import unicodedata
 import re
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+api_key = os.getenv("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
+client = OpenAI(api_key=api_key)
 
 def normalizar_texto(texto: str) -> str:
     """
