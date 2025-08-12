@@ -76,6 +76,26 @@ if img_base64:
         unsafe_allow_html=True
     )
 
+st.markdown(
+    """
+    <style>
+    /* Seu CSS aqui, por exemplo */
+    body, .main, div, p, li {
+        font-family: 'Montserrat', sans-serif !important;
+        color: #003366 !important;
+        /* outras regras */
+    }
+    /* Se quiser um estilo para listas ordenadas que vem no resumo: */
+    ol {
+        margin-left: 20px;
+        color: #003366;
+    }
+    </style>
+    """, 
+    unsafe_allow_html=True
+)
+
+
 
 # ----- PÁGINAS -----
 
