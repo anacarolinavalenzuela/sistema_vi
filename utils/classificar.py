@@ -3,7 +3,6 @@ import streamlit as st
 import unicodedata
 import re
 import os
-from openai import OpenAI
 
 def criar_cliente_openai():
     api_key = os.getenv("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
@@ -12,22 +11,14 @@ def criar_cliente_openai():
     return OpenAI(api_key=api_key)
 
 def normalizar_texto(texto: str) -> str:
-    """
-    Remove acentos, espaços extras e converte texto para minúsculas.
-    Util para padronizar strings para comparações.
-    """
     texto = ''.join(
         c for c in unicodedata.normalize('NFD', texto)
         if unicodedata.category(c) != 'Mn'
     )
-    texto = re.sub(r'\s+', ' ', texto)  # normaliza múltiplos espaços para um só
+    texto = re.sub(r'\s+', ' ', texto)
     return texto.lower().strip()
 
 def extrair_tipo_da_resposta(texto_resposta: str) -> str:
-    """
-    Extrai o tipo do documento a partir da resposta do modelo,
-    buscando palavras-chave na resposta normalizada e mapeando para nomes com acento e capitalização corretos.
-    """
     texto_normalizado = normalizar_texto(texto_resposta)
     tipos_validos = [
         "contrato", "termo aditivo", "relatorio", "oficio", "ata", "proposta",
@@ -36,7 +27,6 @@ def extrair_tipo_da_resposta(texto_resposta: str) -> str:
 
     for tipo in tipos_validos:
         if tipo in texto_normalizado:
-            # Mapeamento para forma corrigida de exibição
             mapeamento = {
                 "relatorio": "Relatório",
                 "oficio": "Ofício",
@@ -48,9 +38,6 @@ def extrair_tipo_da_resposta(texto_resposta: str) -> str:
     return "Outro"
 
 def eh_parte_de_edital(nome_arquivo: str) -> bool:
-    """
-    Verifica se o nome do arquivo contém palavras-chave típicas de documentos que fazem parte de um edital de licitação.
-    """
     nome_norm = normalizar_texto(nome_arquivo)
     palavras_chave = [
         "edital", "licit", "instrucoes", "instruc", "lista de requerimentos",
@@ -60,10 +47,6 @@ def eh_parte_de_edital(nome_arquivo: str) -> bool:
     return any(palavra in nome_norm for palavra in palavras_chave)
 
 def normalizar_tipo_documento(tipo: str, nome_arquivo: str = None) -> str:
-    """
-    Normaliza o nome do tipo de documento para uma forma padronizada.
-    Dá prioridade a "Edital de Licitação" se detectado no tipo ou nome do arquivo.
-    """
     tipo_lower = normalizar_texto(tipo)
     
     if "edital de licitacao" in tipo_lower or (nome_arquivo and eh_parte_de_edital(nome_arquivo)):
@@ -90,10 +73,7 @@ def normalizar_tipo_documento(tipo: str, nome_arquivo: str = None) -> str:
 def classificar_documento(nome_arquivo: str, conteudo_texto: str = None, client=None) -> str:
     if client is None:
         raise ValueError("Client OpenAI deve ser passado para classificar_documento")
-    """
-    Classifica o tipo do documento utilizando o nome do arquivo e/ou o conteúdo do texto.
-    Prioriza detectar se é parte de edital antes de usar o modelo da OpenAI para classificação.
-    """
+    
     if eh_parte_de_edital(nome_arquivo):
         return "Edital de Licitação"
     
@@ -101,7 +81,7 @@ def classificar_documento(nome_arquivo: str, conteudo_texto: str = None, client=
         prompt = f"""
 Classifique o tipo do documento com base no conteúdo abaixo:
 
-{conteudo_texto[:4000]}  # Limitamos para evitar estourar o token
+{conteudo_texto[:4000]}
 
 Escolha apenas UMA destas opções:
 Contrato, Termo Aditivo, Relatório, Ofício, Ata, Proposta, Minuta,
@@ -118,8 +98,6 @@ Contrato, Termo Aditivo, Relatório, Ofício, Ata, Proposta, Minuta,
 Termo de Apostilamento, Edital de Licitação, Termo de Referência, Outro.
 """
 
-    # Chamada à API OpenAI para obter a classificação
-    client = criar_cliente_openai()
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[{"role": "user", "content": prompt}],
@@ -131,3 +109,10 @@ Termo de Apostilamento, Edital de Licitação, Termo de Referência, Outro.
     tipo_normalizado = normalizar_tipo_documento(tipo_cru, nome_arquivo)
 
     return tipo_normalizado
+
+
+@st.cache_data(show_spinner="Classificando os documentos...")
+def classificar_com_cache(nome_arquivo: str, conteudo_texto: str = None) -> str:
+    api_key = os.getenv("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
+    client = OpenAI(api_key=api_key)
+    return classificar_documento(nome_arquivo, conteudo_texto, client=client)
