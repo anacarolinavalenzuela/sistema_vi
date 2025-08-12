@@ -129,6 +129,8 @@ div[data-testid="stHeadingWithActionElements"] h3 {
     margin: 0;
     display: inline-block;
 }
+
+/* Estilos para expanders e inputs de texto */
 details summary {
     background-color: rgba(255, 255, 255, 0.85) !important;
     padding: 10px 14px !important;
@@ -141,6 +143,79 @@ details summary {
     justify-content: space-between !important;
     gap: 10px !important;
     color: black !important;
+}
+
+div[data-testid="stExpanderDetails"] {
+    margin-top: 4px;
+    padding: 3px 0;
+}
+
+div.stMarkdown ul {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 2px 10px;
+    border-radius: 6px;
+    margin: 2px 2;
+}
+
+div.stMarkdown li {
+    margin-bottom: 3px;
+}
+
+svg[data-testid="stExpanderToggleIcon"] {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    padding: 2px;
+    margin-left: 4px;
+}
+
+.stTextInput label{
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-weight: 500;
+    color: black;
+    display: block;
+    width: 100%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+div[data-testid="stTextInput"] input {
+    border: 3px solid #F55C3D !important;
+    border-radius: 10px !important;
+    padding: 10px !important;
+    font-size: 16px !important;
+}
+
+/* Estilos para parágrafos, listas e marcadores */
+div.stMarkdown > p {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+}
+
+div.stMarkdown ol,
+div.stMarkdown ul {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 0.5rem 1rem 0.5rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 0.5rem;
+}
+
+div.stMarkdown ol > li,
+div.stMarkdown ul > li {
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
+}
+
+div.stMarkdown ol > li::marker,
+div.stMarkdown ul > li::marker {
+    color: #484F70;
+    font-weight: bold;
+    font-size: 1.1em;
 }
 
 /* Estilos para inputs, botões e upload */
@@ -174,77 +249,4 @@ svg[aria-hidden="true"] {
     padding: 4px;
     margin-left: 6px;
     color: black;
-}
-
-/* Estilos para expanders e inputs de texto */
-summary.st-emotion-cache-4rp1ik {
-    font-weight: 600;
-    font-size: 1.05rem;
-    cursor: pointer;
-    padding: 4px 0;
-    margin: 0;
-}
-div[data-testid="stExpanderDetails"] {
-    margin-top: 4px;
-    padding: 3px 0;
-}
-div.stMarkdown ul {
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 2px 10px;
-    border-radius: 6px;
-    margin: 2px 2;
-}
-div.stMarkdown li {
-    margin-bottom: 3px;
-}
-svg[data-testid="stExpanderToggleIcon"] {
-    background-color: rgba(255, 255, 255, 0.7);
-    border-radius: 50%;
-    padding: 2px;
-    margin-left: 4px;
-}
-.stTextInput label{
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 12px 16px;
-    border-radius: 10px;
-    font-weight: 500;
-    color: black;
-    display: block;
-    width: 100%;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
-}
-div[data-testid="stTextInput"] input {
-    border: 3px solid #F55C3D !important;
-    border-radius: 10px !important;
-    padding: 10px !important;
-    font-size: 16px !important;
-}
-
-/* Estilos para parágrafos, listas e marcadores */
-div.st-emotion-cache-9fqyt2 > p {
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 1rem;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
-}
-div.st-emotion-cache-9fqyt2 ol,
-div.st-emotion-cache-9fqyt2 ul {
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 0.5rem 1rem 0.5rem 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
-    margin-bottom: 0.5rem;
-}
-div.st-emotion-cache-9fqyt2 ol > li,
-div.st-emotion-cache-9fqyt2 ul > li {
-    margin-bottom: 0.3rem;
-    line-height: 1.2;
-}
-div.st-emotion-cache-9fqyt2 ol > li::marker,
-div.st-emotion-cache-9fqyt2 ul > li::marker {
-    color: #484F70;
-    font-weight: bold;
-    font-size: 1.1em;
 }
