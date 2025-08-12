@@ -1,6 +1,6 @@
 import streamlit as st
 from io import BytesIO
-from utils.classificar import classificar_documento, normalizar_tipo_documento
+from utils.classificar import classificar_com_cache, normalizar_tipo_documento
 from utils.extrair_texto import extrair_texto
 from utils.llm import gerar_resumo_padronizado
 from utils.html_fix import force_all_to_ol 
@@ -24,9 +24,6 @@ def mostrar_resumo_tipo():
     Exibe resumos para os documentos filtrados por tipo escolhido na sessão.
     Extrai texto, classifica documentos, filtra pelo tipo e gera resumos formatados.
     """
-    api_key = os.getenv("OPENAI_API_KEY") or st.secrets["OPENAI_API_KEY"]
-    client = OpenAI(api_key=api_key)
-    
     tipo = st.session_state.get("tipo_para_resumir", None)
     arquivos = st.session_state.get("uploaded_files", None)
 
@@ -55,8 +52,10 @@ def mostrar_resumo_tipo():
     # Extrair texto e classificar documentos para filtrar por tipo desejado
     for arq in arquivos:
         texto_tmp = extrair_texto(BytesIO(arq["content"]), arq["name"])
+        textos_cache[arq["name"]] = texto_tmp  # <-- salvar no cache!
+        
         tipo_classificado = normalizar_tipo_documento(
-            classificar_documento(arq["name"], texto_tmp, client=client),
+            classificar_com_cache(arq["name"], texto_tmp),
             arq["name"]
         )
         tipo_desejado = normalizar_tipo_documento(tipo)
@@ -83,19 +82,6 @@ def mostrar_resumo_tipo():
     _, col1, _ = st.columns([1.6, 2, 1])
     with col1:
         st.button("Voltar ao menu de resumos", on_click=lambda: st.session_state.update({"page": "resumo"}))
-
-
-@st.cache_data(show_spinner="Classificando os documentos...")
-def classificar_com_cache(nome_arquivo: str, conteudo_texto: str = None) -> str:
-    # Cria o client dentro da função, sem passar como parâmetro
-    api_key = os.getenv("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
-    client = OpenAI(api_key=api_key)
-    
-    # código da classificação que usa o client
-    # ... sua lógica que antes estava em classificar_documento
-
-    # Você pode, por exemplo, chamar sua função original passando o client interno
-    return classificar_documento(nome_arquivo, conteudo_texto, client=client)
 
 
 def mostrar_resumo():
@@ -130,8 +116,6 @@ def mostrar_resumo():
     st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
 
     classificacoes = {}
-    
-    client = criar_cliente_openai()
 
     for file in files:
         texto = extrair_texto(BytesIO(file["content"]), file["name"])
@@ -162,7 +146,7 @@ def mostrar_resumo():
             # Atualiza estado para ir para página de resumo específico
             st.session_state["tipo_para_resumir"] = tipo_escolhido
             st.session_state["page"] = "resumo_tipo"
-            st.rerun()
+            st.experimental_rerun()
 
     st.markdown("</div>", unsafe_allow_html=True)
     st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
