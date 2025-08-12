@@ -8,8 +8,6 @@ def criar_cliente_openai():
     api_key = os.getenv("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
     return OpenAI(api_key=api_key)
 
-client = criar_cliente_openai()
-
 def normalizar_texto(texto: str) -> str:
     """
     Remove acentos, espaços extras e converte texto para minúsculas.
@@ -117,6 +115,7 @@ Termo de Apostilamento, Edital de Licitação, Termo de Referência, Outro.
 """
 
     # Chamada à API OpenAI para obter a classificação
+    client = criar_cliente_openai()
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[{"role": "user", "content": prompt}],
