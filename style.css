@@ -45,15 +45,6 @@ h1, .titulo {
     box-shadow: 0 4px 8px rgba(0, 119, 182, 0.6);
 }
 
-.stButton > button > * {
-    background-color: transparent !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    width: auto !important;
-    height: auto !important;
-    display: inline !important;
-}
-
 /* Links */
 a {
     color: #00aEEF;
@@ -138,8 +129,6 @@ div[data-testid="stHeadingWithActionElements"] h3 {
     margin: 0;
     display: inline-block;
 }
-
-/* Expander */
 details summary {
     background-color: rgba(255, 255, 255, 0.85) !important;
     padding: 10px 14px !important;
@@ -154,7 +143,7 @@ details summary {
     color: black !important;
 }
 
-/* Inputs, botões e upload */
+/* Estilos para inputs, botões e upload */
 .stFileUploader > div > div {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 10px;
@@ -232,21 +221,30 @@ div[data-testid="stTextInput"] input {
     font-size: 16px !important;
 }
 
-/* Estilos para parágrafos, listas e marcadores somente DENTRO do markdown, com fundo branco e padding */
-div[data-testid="stMarkdownContainer"] {
-    background: none !important;
-    padding: 0 !important;
-}
-div[data-testid="stMarkdownContainer"] > p,
-div[data-testid="stMarkdownContainer"] > ul,
-div[data-testid="stMarkdownContainer"] > ol {
+/* Estilos para parágrafos, listas e marcadores */
+div.st-emotion-cache-9fqyt2 > p {
     background-color: rgba(255, 255, 255, 0.85);
-    padding: 1rem 1.5rem;
+    padding: 1rem;
     border-radius: 10px;
-    box-shadow: 0 0 6px rgba(0,0,0,0.05);
     margin-bottom: 1rem;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
 }
-div[data-testid="stMarkdownContainer"] ul > li,
-div[data-testid="stMarkdownContainer"] ol > li {
-    margin-bottom: 0.4rem;
+div.st-emotion-cache-9fqyt2 ol,
+div.st-emotion-cache-9fqyt2 ul {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 0.5rem 1rem 0.5rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 0.5rem;
+}
+div.st-emotion-cache-9fqyt2 ol > li,
+div.st-emotion-cache-9fqyt2 ul > li {
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
+}
+div.st-emotion-cache-9fqyt2 ol > li::marker,
+div.st-emotion-cache-9fqyt2 ul > li::marker {
+    color: #484F70;
+    font-weight: bold;
+    font-size: 1.1em;
 }
