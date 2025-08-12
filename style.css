@@ -7,27 +7,6 @@ body, .main {
     font-family: 'Montserrat', sans-serif !important;
 }
 
-/* Container principal do markdown (adicionado para fundo branco e padding) */
-div[data-testid="stMarkdownContainer"] {
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 1rem 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
-    margin-bottom: 1rem;
-    color: #000; /* texto preto */
-}
-
-/* Container interno do markdown */
-div.stMarkdown ul {
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 2px 10px;
-    border-radius: 6px;
-    margin: 2px 2;
-}
-div.stMarkdown li {
-    margin-bottom: 3px;
-}
-
 /* Bloco de título central */
 .bloco-titulo {
     background-color: rgba(255,255,255,0.85);
@@ -151,7 +130,7 @@ div[data-testid="stHeadingWithActionElements"] h3 {
     display: inline-block;
 }
 
-/* Expanders */
+/* Expander */
 details summary {
     background-color: rgba(255, 255, 255, 0.85) !important;
     padding: 10px 14px !important;
@@ -166,7 +145,7 @@ details summary {
     color: black !important;
 }
 
-/* Estilos para inputs, botões e upload */
+/* Inputs, botões e upload */
 .stFileUploader > div > div {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 10px;
@@ -211,31 +190,54 @@ div[data-testid="stExpanderDetails"] {
     margin-top: 4px;
     padding: 3px 0;
 }
+div.stMarkdown ul {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 2px 10px;
+    border-radius: 6px;
+    margin: 2px 2;
+}
+div.stMarkdown li {
+    margin-bottom: 3px;
+}
+svg[data-testid="stExpanderToggleIcon"] {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    padding: 2px;
+    margin-left: 4px;
+}
+.stTextInput label{
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-weight: 500;
+    color: black;
+    display: block;
+    width: 100%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+div[data-testid="stTextInput"] input {
+    border: 3px solid #F55C3D !important;
+    border-radius: 10px !important;
+    padding: 10px !important;
+    font-size: 16px !important;
+}
 
-/* Estilos para parágrafos, listas e marcadores dentro do markdown */
-div.st-emotion-cache-9fqyt2 > p {
+/* Estilos para parágrafos, listas e marcadores somente DENTRO do markdown, com fundo branco e padding */
+div[data-testid="stMarkdownContainer"] {
+    background: none !important;
+    padding: 0 !important;
+}
+div[data-testid="stMarkdownContainer"] > p,
+div[data-testid="stMarkdownContainer"] > ul,
+div[data-testid="stMarkdownContainer"] > ol {
     background-color: rgba(255, 255, 255, 0.85);
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     border-radius: 10px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.05);
     margin-bottom: 1rem;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
 }
-div.st-emotion-cache-9fqyt2 ol,
-div.st-emotion-cache-9fqyt2 ul {
-    background-color: rgba(255, 255, 255, 0.85);
-    padding: 0.5rem 1rem 0.5rem 1.5rem;
-    border-radius: 10px;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
-    margin-bottom: 0.5rem;
-}
-div.st-emotion-cache-9fqyt2 ol > li,
-div.st-emotion-cache-9fqyt2 ul > li {
-    margin-bottom: 0.3rem;
-    line-height: 1.2;
-}
-div.st-emotion-cache-9fqyt2 ol > li::marker,
-div.st-emotion-cache-9fqyt2 ul > li::marker {
-    color: #484F70;
-    font-weight: bold;
-    font-size: 1.1em;
+div[data-testid="stMarkdownContainer"] ul > li,
+div[data-testid="stMarkdownContainer"] ol > li {
+    margin-bottom: 0.4rem;
 }
