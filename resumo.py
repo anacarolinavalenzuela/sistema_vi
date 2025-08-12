@@ -4,6 +4,7 @@ from utils.classificar import classificar_documento, normalizar_tipo_documento
 from utils.extrair_texto import extrair_texto
 from utils.llm import gerar_resumo_padronizado
 from utils.html_fix import force_all_to_ol 
+from utils.classificar import criar_cliente_openai
 
 @st.cache_data(show_spinner="Gerando resumo...")
 def gerar_resumo_com_cache(nome_arquivo, texto, tipo):
