@@ -141,7 +141,7 @@ def mostrar_prazos():
     classificacoes = {}
 
     for file in arquivos:
-        tipo = normalizar_tipo_documento(classificar_documento(file["name"]), file["name"])
+        tipo = normalizar_tipo_documento(classificar_documento(file["name"], client=client), file["name"])
 
         if tipo not in classificacoes:
             classificacoes[tipo] = []
