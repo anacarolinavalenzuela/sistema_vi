@@ -24,6 +24,9 @@ def mostrar_resumo_tipo():
     Exibe resumos para os documentos filtrados por tipo escolhido na sessão.
     Extrai texto, classifica documentos, filtra pelo tipo e gera resumos formatados.
     """
+    api_key = os.getenv("OPENAI_API_KEY") or st.secrets["OPENAI_API_KEY"]
+    client = OpenAI(api_key=api_key)
+    
     tipo = st.session_state.get("tipo_para_resumir", None)
     arquivos = st.session_state.get("uploaded_files", None)
 
@@ -52,8 +55,10 @@ def mostrar_resumo_tipo():
     # Extrair texto e classificar documentos para filtrar por tipo desejado
     for arq in arquivos:
         texto_tmp = extrair_texto(BytesIO(arq["content"]), arq["name"])
-        textos_cache[arq["name"]] = texto_tmp
-        tipo_classificado = normalizar_tipo_documento(classificar_documento(arq["name"], texto_tmp), arq["name"])
+        tipo_classificado = normalizar_tipo_documento(
+            classificar_documento(arq["name"], texto_tmp, client=client),
+            arq["name"]
+        )
         tipo_desejado = normalizar_tipo_documento(tipo)
         if tipo_classificado == tipo_desejado:
             arquivos_selecionados.append(arq)
