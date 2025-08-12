@@ -3,10 +3,9 @@ import streamlit as st
 import unicodedata
 import re
 
-def criar_cliente_openai(api_key=None):
-    if api_key is None:
-        import streamlit as st
-        api_key = os.getenv("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
+def criar_cliente_openai():
+    import streamlit as st  # importa aqui, dentro da função
+    api_key = os.getenv("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
     return OpenAI(api_key=api_key)
 
 client = criar_cliente_openai()
