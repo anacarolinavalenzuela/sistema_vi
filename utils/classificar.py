@@ -84,10 +84,9 @@ def normalizar_tipo_documento(tipo: str, nome_arquivo: str = None) -> str:
 
     return "Outro"
 
-@st.cache_data(show_spinner="Classificando documentos...")
 def classificar_documento(nome_arquivo: str, conteudo_texto: str = None, client=None) -> str:
     if client is None:
-        raise ValueError("Client OpenAI deve ser passado como parâmetro")
+        raise ValueError("Client OpenAI deve ser passado para classificar_documento")
     """
     Classifica o tipo do documento utilizando o nome do arquivo e/ou o conteúdo do texto.
     Prioriza detectar se é parte de edital antes de usar o modelo da OpenAI para classificação.
