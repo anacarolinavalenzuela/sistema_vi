@@ -1,9 +1,8 @@
 import streamlit as st
 from io import BytesIO
-from utils.classificar import classificar_documento, normalizar_tipo_documento
+from utils.classificar import classificar_documento, normalizar_tipo_documento, criar_cliente_openai
 from utils.extrair_texto import extrair_texto
 from utils.llm import contar_tokens, dividir_em_chunks
-from utils.classificar import client
 from prompts import PROMPT_PRAZOS
 
 
@@ -42,6 +41,7 @@ Texto:
 \"\"\"{parte}\"\"\"
 """
         try:
+            client = criar_cliente_openai()
             resposta = client.chat.completions.create(
                 model=modelo,
                 messages=[{"role": "user", "content": prompt}],
