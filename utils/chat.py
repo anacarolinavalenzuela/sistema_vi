@@ -83,6 +83,8 @@ def mostrar_chat():
         </div>
         """, unsafe_allow_html=True)
 
+    st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
+
     if "uploaded_files" not in st.session_state or not st.session_state.uploaded_files:
         st.warning("Nenhum documento enviado ainda. Volte à página de Upload.")
         return
