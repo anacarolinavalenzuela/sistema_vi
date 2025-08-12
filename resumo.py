@@ -130,9 +130,7 @@ def mostrar_resumo():
 
     for file in files:
         texto = extrair_texto(BytesIO(file["content"]), file["name"])
-        tipo = normalizar_tipo_documento(
-            classificar_com_cache(file["name"], texto, client=client),
-            file["name"])
+        tipo = normalizar_tipo_documento(classificar_com_cache(file["name"], texto), file["name"])
         if tipo not in classificacoes:
             classificacoes[tipo] = []
         classificacoes[tipo].append(file)
