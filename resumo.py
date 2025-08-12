@@ -78,12 +78,10 @@ def mostrar_resumo_tipo():
 
 
 @st.cache_data(show_spinner="Classificando os documentos...")
-def classificar_com_cache(nome_arquivo: str, conteudo_texto: str = None) -> str:
-    """
-    Função wrapper para classificar documentos com cache.
-    Retorna o tipo classificado pelo modelo.
-    """
-    return classificar_documento(nome_arquivo, conteudo_texto)
+def classificar_com_cache(nome_arquivo: str, conteudo_texto: str = None, client=None) -> str:
+    if client is None:
+        raise ValueError("O client OpenAI deve ser passado para classificar_com_cache")
+    return classificar_documento(nome_arquivo, conteudo_texto, client=client)
 
 
 def mostrar_resumo():
@@ -120,7 +118,7 @@ def mostrar_resumo():
     classificacoes = {}
     for file in files:
         texto = extrair_texto(BytesIO(file["content"]), file["name"])
-        tipo = normalizar_tipo_documento(classificar_com_cache(file["name"], texto), file["name"])
+        tipo = normalizar_tipo_documento(classificar_com_cache(file["name"], texto, client=client), file["name"])
 
         if tipo not in classificacoes:
             classificacoes[tipo] = []
