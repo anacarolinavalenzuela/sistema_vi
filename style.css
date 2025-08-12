@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* Fundo */
+body, .main {
+    background-color: #ecf4fa !important;
+    color: #003366 !important; 
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+/* Bloco de título central */
+.bloco-titulo {
+    background-color: rgba(255,255,255,0.85);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    color: #003366;
+    margin-bottom: 1.5rem;
+}
+
+/* Cabeçalhos principais */
+h1, .titulo {
+    color: #003366 !important; 
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+/* Botões padrão do Streamlit */
+.stButton > button {
+    background-color: #363b53;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 174, 239, 0.4);
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.stButton > button:hover {
+    background-color: #6CACDA;
+    box-shadow: 0 4px 8px rgba(0, 119, 182, 0.6);
+}
+
+/* Links */
+a {
+    color: #00aEEF;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Caixa principal de conteúdo */
+.main > div:first-child {
+    max-width: 900px;
+    margin: auto;
+    padding: 2rem 3rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgb(0 0 0 / 0.1);
+}
+
+/* Barra lateral */
+[data-testid="stSidebar"] {
+    background-color: #003366;
+    color: white;
+    font-weight: 600;
+    padding: 1rem;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+/* Inputs e selects */
+.stTextInput > div > input, 
+.stSelectbox > div > select {
+    border-radius: 6px;
+    border: 1px solid #b3d7ff;
+    padding: 6px 10px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.stTextInput > div > input:focus, 
+.stSelectbox > div > select:focus {
+    border-color: #00aEEF;
+    outline: none;
+}
+
+/* Tooltip e mensagens de erro */
+.stTooltip, .stAlert {
+    background-color: #e6f2ff;
+    border-left: 4px solid #00aEEF;
+    color: #003366;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+/* Ajuste títulos de seções */
+h2, h3 {
+    color: #0077b6;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+/* Fundo branco para os títulos dos arquivos */
+div[data-testid="stHeadingWithActionElements"] {
+    padding: 1px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Aplica fundo branco arredondado apenas ao h3 */
+div[data-testid="stHeadingWithActionElements"] h3 {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 10px 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    color: #000;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    display: inline-block;
+}
+details summary {
+    background-color: rgba(255, 255, 255, 0.85) !important;
+    padding: 10px 14px !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    font-size: 1.05rem !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    color: black !important;
+}
+
+/* Estilos para inputs, botões e upload */
+.stFileUploader > div > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+div.stFileUploaderFileName {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: black !important;
+    font-weight: 500;
+    margin-bottom: 6px;
+    display: inline-block;
+    max-width: 100%;
+}
+div.stFileUploaderFileName + small {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 4px 8px;
+    border-radius: 6px;
+    color: #333;
+    font-size: 12px;
+    margin-left: 6px;
+}
+svg[aria-hidden="true"] {
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 50%;
+    padding: 4px;
+    margin-left: 6px;
+    color: black;
+}
+
+/* Estilos para expanders e inputs de texto */
+summary.st-emotion-cache-4rp1ik {
+    font-weight: 600;
+    font-size: 1.05rem;
+    cursor: pointer;
+    padding: 4px 0;
+    margin: 0;
+}
+div[data-testid="stExpanderDetails"] {
+    margin-top: 4px;
+    padding: 3px 0;
+}
+div.stMarkdown ul {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 2px 10px;
+    border-radius: 6px;
+    margin: 2px 2;
+}
+div.stMarkdown li {
+    margin-bottom: 3px;
+}
+svg[data-testid="stExpanderToggleIcon"] {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    padding: 2px;
+    margin-left: 4px;
+}
+.stTextInput label{
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-weight: 500;
+    color: black;
+    display: block;
+    width: 100%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+div[data-testid="stTextInput"] input {
+    border: 3px solid #F55C3D !important;
+    border-radius: 10px !important;
+    padding: 10px !important;
+    font-size: 16px !important;
+}
+
+/* Estilos para parágrafos, listas e marcadores */
+div.st-emotion-cache-9fqyt2 > p {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+}
+div.st-emotion-cache-9fqyt2 ol,
+div.st-emotion-cache-9fqyt2 ul {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 0.5rem 1rem 0.5rem 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 0.5rem;
+}
+div.st-emotion-cache-9fqyt2 ol > li,
+div.st-emotion-cache-9fqyt2 ul > li {
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
+}
+div.st-emotion-cache-9fqyt2 ol > li::marker,
+div.st-emotion-cache-9fqyt2 ul > li::marker {
+    color: #484F70;
+    font-weight: bold;
+    font-size: 1.1em;
+}
