@@ -287,6 +287,23 @@ elif st.session_state['page'] == 'prazos':
 
     st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
 
+elif st.session_state['page'] == 'resumo_tipo':
+    from prazos import mostrar_prazos_tipo
+    mostrar_prazos_tipo()
+
+    st.markdown("<div style='margin-top: 50px;'></div>", unsafe_allow_html=True)
+
+    col_esq, col_btn1, col_espaco, col_btn2, col_espaco2, col_btn3, col_dir = st.columns([0.2, 0.75, 1, 0.75, 1, 0.5, 1.4])
+    with col_btn1:
+        st.button("Voltar ao Início", on_click=lambda: st.session_state.update({'page': 'inicio'}))
+    with col_btn2:
+        st.button("Voltar ao Upload", on_click=lambda: st.session_state.update({'page': 'upload'}))
+    with col_btn3:
+        st.button("Voltar ao Menu", on_click=lambda: st.session_state.update({'page': 'menu'}))
+
+    st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
+
+## Página: CHAT
 elif st.session_state['page'] == 'chat':
     from utils.chat import mostrar_chat
     mostrar_chat()
