@@ -146,7 +146,7 @@ def mostrar_resumo():
             # Atualiza estado para ir para página de resumo específico
             st.session_state["tipo_para_resumir"] = tipo_escolhido
             st.session_state["page"] = "resumo_tipo"
-            st.experimental_rerun()
+            st.rerun()
 
     st.markdown("</div>", unsafe_allow_html=True)
     st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
