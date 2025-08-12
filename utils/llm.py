@@ -1,9 +1,9 @@
 from openai import OpenAI
 import tiktoken
 from prompts import PROMPTS_PADRONIZADOS
+from utils.classificar import criar_cliente_openai
 
-api_key = os.getenv("OPENAI_API_KEY") or st.secrets.get("OPENAI_API_KEY")
-client = OpenAI(api_key=api_key)
+client = criar_cliente_openai()
 
 def contar_tokens(texto, modelo="gpt-3.5-turbo"):
     """Conta a quantidade de tokens de um texto dado um modelo."""
