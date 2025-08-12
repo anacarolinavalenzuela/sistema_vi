@@ -88,9 +88,11 @@ def mostrar_prazos_tipo():
 
     st.markdown("<div style='margin-top: 10px;'></div>", unsafe_allow_html=True)
 
+    client = criar_cliente_openai()
+    
     arquivos_selecionados = [
         arq for arq in arquivos
-        if normalizar_tipo_documento(classificar_documento(arq["name"]), arq["name"]) == tipo
+        if normalizar_tipo_documento(classificar_documento(file["name"], client=client), file["name"]) == tipo
     ]
 
     if not arquivos_selecionados:
