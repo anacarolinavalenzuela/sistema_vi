@@ -288,7 +288,7 @@ elif st.session_state['page'] == 'prazos':
     st.markdown("<div style='margin-top: 30px;'></div>", unsafe_allow_html=True)
 
 elif st.session_state['page'] == 'prazos_tipo':
-    from prazos import mostrar_prazos_tipo
+    from utils.prazos import mostrar_prazos_tipo
     mostrar_prazos_tipo()
 
     st.markdown("<div style='margin-top: 50px;'></div>", unsafe_allow_html=True)
